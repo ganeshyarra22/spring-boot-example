@@ -1,5 +1,6 @@
 package com.example.customer;
 
+import com.example.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public class CustomerService {
     public Customer getCustomer(Integer id)
     {
         return customerDao.selectById(id)
-                .orElseThrow(()->new IllegalArgumentException(
-                        "customer wit id [%s] not found ".formatted(id)
+                .orElseThrow(()->new ResourceNotFound(
+                        "customer with id [%s] not found ".formatted(id)
                 ));
 
     }

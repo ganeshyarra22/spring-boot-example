@@ -11,28 +11,10 @@ public class SpringBootExampleApplication {
 
 	public static void main(String[] args) {
 
-		ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringBootExampleApplication.class, args);
-
-
-//		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
-//
-//		for (String beanDefinitionName : beanDefinitionNames) {
-//			System.out.println(beanDefinitionName);
-
-//		}
-	}
-
-	@Bean
-	public Foo getFoo()
-	{
-		return new Foo("bar");
-	}
-
-
-	record Foo(String name)
-	{
+         SpringApplication.run(SpringBootExampleApplication.class, args);
 
 	}
+
 
 
 
