@@ -1,14 +1,11 @@
 package com.example.customer;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/customers")
 public class CustomerController
 {
 
@@ -20,17 +17,33 @@ public class CustomerController
 
     //	@RequestMapping(path = "/customers",
 //			method = RequestMethod.GET)
-    @GetMapping("/customers")
+    @GetMapping
     public List<Customer> getCustomers()
     {
         return customerService.getAllCustomers();
     }
 
-    @GetMapping("/{customerId}")
+    @GetMapping("{customerId}")
     public Customer getCustomer(@PathVariable(name = "customerId") Integer customerId)
     {
         return customerService.getCustomer(customerId);
 
+    }
 
+    @PostMapping
+    public  void registerCustomer(@RequestBody CustomerRegistrationRequest customerRegistrationRequest)
+    {
+        customerService.addCustomer(customerRegistrationRequest);
+    }
+
+    @DeleteMapping("{customerId}")
+    public void deletingCustomer(@PathVariable("customerId") Integer id){
+        customerService.deleteCustomer(id);
+    }
+
+    @PutMapping("{customerId}")
+    public void updateCustomer(@PathVariable("customerId") Integer id,
+                               @RequestBody CustomerRegistrationRequest customerRegistrationRequest){
+        customerService.updateById(id,customerRegistrationRequest);
     }
 }
